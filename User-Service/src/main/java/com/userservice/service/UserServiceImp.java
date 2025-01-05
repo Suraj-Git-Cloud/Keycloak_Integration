@@ -1,5 +1,7 @@
 package com.userservice.service;
 
+import java.time.Duration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public Flux<User> fetchAll() {
 		
-		Flux<User> users = userRepo.findAll();
+		Flux<User> users = userRepo.findAll().delayElements(Duration.ofSeconds(4));
 		return users;
 	}
 

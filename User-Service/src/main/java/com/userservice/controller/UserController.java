@@ -1,8 +1,7 @@
 package com.userservice.controller;
 
-import java.time.Duration;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,11 +34,11 @@ public class UserController {
 
 	@GetMapping("/all")
 	public Flux<User> fetchAll() {
-		 return service.fetchAll().delayElements(Duration.ofSeconds(4));
+		 return service.fetchAll();
 		
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping(value ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Mono<User> findById(@PathVariable("id") Integer userId) {
 		Mono<User> userData = service.fetchUser(userId);
 		return userData;
