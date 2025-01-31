@@ -1,2 +1,0 @@
-# Keycloak_Integration
-Keycloak
